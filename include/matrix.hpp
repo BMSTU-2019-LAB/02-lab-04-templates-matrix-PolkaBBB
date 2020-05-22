@@ -109,8 +109,8 @@ class Matrix {
     }
   }
   friend Matrix<T> operator*(const Matrix<T>& M1, const Matrix<T>& M2) {
-    if (M1.get_rows() == M2.get_rows() &&
-        M1.get_columns() == M2.get_columns()) {
+    Matrix<T> res;
+    if (M1.get_columns() == M2.get_rows()) {
       Matrix<T> M3(M1.get_rows(), M2.get_columns());
       for (int i = 0; i < M1.get_rows(); i++) {
         for (int j = 0; j < M1.get_columns(); j++) {
@@ -123,7 +123,11 @@ class Matrix {
       }
       return M3;
     } else {
-      return Matrix();
+      res = Matrix();
+      res.n = 0;
+      res.m = 0;
+      res.M = nullptr;
+      return res;
     }
   }
   friend bool operator==(const Matrix<T>& M1, const Matrix<T>& M2) {
