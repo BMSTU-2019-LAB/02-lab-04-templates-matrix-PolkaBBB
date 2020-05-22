@@ -127,7 +127,7 @@ class Matrix {
       res.n = 0;
       res.m = 0;
       res.M = nullptr;
-
+      return res;
     }
   }
   friend bool operator==(const Matrix<T>& M1, const Matrix<T>& M2) {
