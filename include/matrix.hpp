@@ -9,7 +9,7 @@
 #include <iostream>
 #include <limits>
 #include <type_traits>
-using namespace std;
+
 template <class T>
 class Matrix {
   static_assert(std::is_arithmetic<T>::value, "Non-arithmetic type");
@@ -30,7 +30,7 @@ class Matrix {
         M[i][j] = 0;
       }
     }
-  };
+  }
   T* operator[](int index) const { return M[index]; }
   Matrix() {
     n = 0;
@@ -105,7 +105,6 @@ class Matrix {
         T sum = 0;
         for (int f = 0; f < M1.get_columns(); f++) {
           sum += M1.M[i][f] * M2.M[f][j];
-  
         }
         M3.M[i][j] = sum;
       }
@@ -114,7 +113,8 @@ class Matrix {
     return M3;
   }
   friend bool operator==(const Matrix<T>& M1, const Matrix<T>& M2) {
-    if (M1.get_rows() == M2.get_rows() && M1.get_columns() == M2.get_columns()) {
+    if (M1.get_rows() == M2.get_rows() 
+        && M1.get_columns() == M2.get_columns()) {
       if (std::is_floating_point<T>::value) {
         for (int i = 0; i < M1.get_rows(); i++) {
           for (int j = 0; j < M1.get_columns(); j++) {
