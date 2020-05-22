@@ -149,7 +149,7 @@ TEST(Matrix, Mult) {
 //  for (size_t i = 0; i < m.get_rows(); ++i) {
 //    for (size_t j = 0; j < m.get_rows(); ++j) {
 //      m[i][j] = 1 + (i*j)%7;
-//    }   
+//    }
 //  }
 //
 //  Matrix<double> I(5, 5);

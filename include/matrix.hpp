@@ -113,7 +113,7 @@ class Matrix {
     return M3;
   }
   friend bool operator==(const Matrix<T>& M1, const Matrix<T>& M2) {
-    if (M1.get_rows() == M2.get_rows() 
+    if (M1.get_rows() == M2.get_rows()
         && M1.get_columns() == M2.get_columns()) {
       if (std::is_floating_point<T>::value) {
         for (int i = 0; i < M1.get_rows(); i++) {
