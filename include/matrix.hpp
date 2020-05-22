@@ -205,58 +205,31 @@ T Matrix<T>::determinant(const Matrix<T>& M1) {
 }
 //template <class T>
 //Matrix<T> Matrix<T>::inverse() {
-//  Matrix<T> inv(this->n, this->m);
-//
-//  double det = determinant(*this);
-//
-//  for (int i = 0; i < inv.get_rows(); i++) {
-//    for (int j = 0; j < inv.get_columns(); j++) {
-//      inv[i][j] = pow(-1, i + j) * determinant(delete_element(*this, i, j));
+//  T det = determinant(*this);
+//  Matrix<T> M_M(n, m);
+//  for (int i = 0; i < n; i++) {
+//    for (int j = 0; j < m; j++) {
+//      if ((j % 2) == 1) {
+//        M_M[i][j] = (-1) * determinant(delete_element(*this, i, j));
+//      } else {
+//        M_M[i][j] = determinant(delete_element(*this, i, j));
+//      }
 //    }
 //  }
-//
-//  Matrix<T> invT(inv.get_rows(), inv.get_columns());
-//
-//  for (int i = 0; i < invT.get_rows(); i++) {
-//    for (int j = 0; j < invT.get_columns(); j++) {
-//      T temp = inv[j][i];
-//
-//      T dividedTemp = temp / det;
-//
-//      invT[i][j] = dividedTemp;
+//  Matrix<T> M_T(M_M.get_rows(), M_M.get_columns());
+//  for (int i = 0; i < M_M.get_rows(); i++) {
+//    for (int j = 0; j < M_M.get_columns(); j++) {
+//      M_T[j][i] = M_M[i][j];
+//      M_T[i][j] = M_M[j][i];
 //    }
 //  }
-//
-//  return invT;
+//  Matrix<T> M_I(M_M.get_rows(), M_M.get_columns());
+//  for (int i = 0; i < M_M.get_rows(); i++) {
+//    for (int j = 0; j < M_M.get_columns(); j++) {
+//      M_I[i][j] = (1. / det) * M_T[i][j];
+//    }
+//  }
+//  return M_I;
 //}
-
-template <class T>
-Matrix<T> Matrix<T>::inverse() {
-  T det = determinant(*this);
-  Matrix<T> M_M(n, m);
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-      if ((j % 2) == 1) {
-        M_M[i][j] = (-1) * determinant(delete_element(*this, i, j));
-      } else {
-        M_M[i][j] = determinant(delete_element(*this, i, j));
-      }
-    }
-  }
-  Matrix<T> M_T(M_M.get_rows(), M_M.get_columns());
-  for (int i = 0; i < M_M.get_rows(); i++) {
-    for (int j = 0; j < M_M.get_columns(); j++) {
-      M_T[j][i] = M_M[i][j];
-      M_T[i][j] = M_M[j][i];
-    }
-  }
-  Matrix<T> M_I(M_M.get_rows(), M_M.get_columns());
-  for (int i = 0; i < M_M.get_rows(); i++) {
-    for (int j = 0; j < M_M.get_columns(); j++) {
-      M_I[i][j] = (1. / det) * M_T[i][j];
-    }
-  }
-  return M_I;
-}
 
 #endif // INCLUDE_MATRIX_HPP_
