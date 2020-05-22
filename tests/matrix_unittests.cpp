@@ -142,22 +142,22 @@ TEST(Matrix, Mult) {
     ASSERT_EQ(0, e.get_columns());
 }
 
-//TEST(Matrix, Inverse) {
-//  Matrix<double> m(5, 5);
-//
-//  for (size_t i = 0; i < m.get_rows(); ++i) {
-//    for (size_t j = 0; j < m.get_rows(); ++j) {
-//      m[i][j] = 1 + (i*j)%7;
-//    }
-//  }
-//
-//  Matrix<double> I(5, 5);
-//  for (size_t i = 0; i < m.get_rows(); ++i) {
-//    I[i][i] = 1.;
-//  }
-//
-//  auto i = m.inverse();
-//  EXPECT_EQ(I, i*m);
-//  EXPECT_EQ(I, m*i);
-//  EXPECT_EQ(m*i, i*m);
-//}
+TEST(Matrix, Inverse) {
+  Matrix<double> m(5, 5);
+
+  for (size_t i = 0; i < m.get_rows(); ++i) {
+    for (size_t j = 0; j < m.get_rows(); ++j) {
+      m[i][j] = 1 + (i*j)%7;
+    }
+  }
+
+  Matrix<double> I(5, 5);
+  for (size_t i = 0; i < m.get_rows(); ++i) {
+    I[i][i] = 1.;
+  }
+
+  auto i = m.inverse();
+  EXPECT_EQ(I, i*m);
+  EXPECT_EQ(I, m*i);
+  EXPECT_EQ(m*i, i*m);
+}
