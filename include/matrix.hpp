@@ -162,7 +162,7 @@ class Matrix {
   }
   Matrix<T> delete_element(const Matrix<T>& M1, int I, int J);
   T determinant(const Matrix<T>& M1);
-  Matrix<T> inverse();
+  //Matrix<T> inverse();
 };
 template <class T>
 Matrix<T> Matrix<T>::delete_element(const Matrix<T>& M1, int I, int J) {
