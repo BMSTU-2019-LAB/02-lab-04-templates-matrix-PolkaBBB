@@ -79,7 +79,7 @@ class Matrix {
   int get_rows() const { return n; }
   int get_columns() const { return m; }
 
-  friend Matrix<T>& operator+(const Matrix<T>& M1, const Matrix<T>& M2) {
+  friend Matrix<T> operator+(const Matrix<T>& M1, const Matrix<T>& M2) {
     Matrix<T> M3(M1.get_rows(), M1.get_columns());
     for (int i = 0; i < M1.get_rows(); i++) {
       for (int j = 0; j < M1.get_columns(); j++) {
@@ -89,7 +89,7 @@ class Matrix {
     return M3;
   }
 
-  friend Matrix<T>& operator-(const Matrix<T>& M1, const Matrix<T>& M2) {
+  friend Matrix<T> operator-(const Matrix<T>& M1, const Matrix<T>& M2) {
     Matrix<T> M3(M1.get_rows(), M1.get_columns());
     for (int i = 0; i < M1.get_rows(); i++) {
       for (int j = 0; j < M1.get_columns(); j++) {
@@ -98,16 +98,19 @@ class Matrix {
     }
     return M3;
   }
-  friend Matrix<T>& operator*(const Matrix<T>& M1, const Matrix<T>& M2) {
+  friend Matrix<T> operator*(const Matrix<T>& M1, const Matrix<T>& M2) {
     Matrix<T> M3(M1.get_rows(), M2.get_columns());
     for (int i = 0; i < M1.get_rows(); i++) {
       for (int j = 0; j < M1.get_columns(); j++) {
         T sum = 0;
         for (int f = 0; f < M1.get_columns(); f++) {
           sum += M1.M[i][f] * M2.M[f][j];
+  
         }
+        M3.M[i][j] = sum;
       }
     }
+
     return M3;
   }
   friend bool operator==(const Matrix<T>& M1, const Matrix<T>& M2) {
